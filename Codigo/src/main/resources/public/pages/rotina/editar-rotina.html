@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Editar rotina | SaveScreen Kids</title>
+    <link rel="stylesheet" href="../../assets/css/style.css" />
+    <link rel="stylesheet" href="../../assets/css/rotina/editar-rotina.css" />
+    <link rel="icon" type="image/svg+xml" href="../../assets/images/logo.png" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .btn-add-task {
+            background: #9b27b0;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 4px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: background-color 0.2s;
+        }
+
+        .btn-add-task:hover {
+            background: #7b1fa2;
+        }
+
+        .table-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 16px;
+        }
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+
+<body onload="init()">
+    <!-- === Header === -->
+    <header>
+        <a href="../../index.html">
+            <img src="../../assets/images/logo.png" alt="Logotipo da SaveScreen Kids" />
+        </a>
+        <nav>
+            <a href="../../index.html">Home</a>
+            <a href="../rotina/rotina.html">Rotina</a>
+            <a href="../usuario/editar-informacoes.html">Perfil</a>
+        </nav>
+    </header>
+    <!-- === Page Content === -->
+    <main>
+        <h3 id="titulo">Editar rotina</h3>
+        <div class="mb-3 d-flex align-items-center">
+            <label for="select-crianca" class="me-2 fw-bold">Selecionar criança:</label>
+            <select id="select-crianca" class="form-select d-inline-block" style="width:auto;">
+                <!-- Opções preenchidas via JS -->
+            </select>
+        </div>
+        <div id="message" class="col-sm-10"></div>
+        <div class="table-header">
+            <h4>Rotina Semanal</h4>
+            <a href="criar-tarefa.html" class="btn-add-task">
+                <i class="fas fa-plus"></i>
+                Nova Tarefa
+            </a>
+        </div>
+        <table id="tableTarefas">
+            <tr>
+                <th class="infoRotina">HORÁRIO</th>
+                <th class="dia">DOMINGO</th>
+                <th class="dia">SEGUNDA</th>
+                <th class="dia">TERÇA</th>
+                <th class="dia">QUARTA</th>
+                <th class="dia">QUINTA</th>
+                <th class="dia">SEXTA</th>
+                <th class="dia">SABÁDO</th>
+            </tr>
+        </table>
+        <hr>
+        <!-- Bloco de cadastro de criança -->
+        <section>
+            <h2>Cadastrar nova criança</h2>
+            <form id="formCrianca" class="mb-3">
+                <label for="nomeCrianca" class="form-label">Nome da criança:</label>
+                <input type="text" id="nomeCrianca" class="form-control mb-2" required />
+                <button type="submit" class="button">Cadastrar</button>
+            </form>
+            <div id="msgCrianca"></div>
+            <h4>Crianças cadastradas:</h4>
+            <ul id="listaCriancas"></ul>
+        </section>
+    </main>
+    <!-- === Footer === -->
+    <footer>
+        <div class="footer-col">
+            <h4><a href="../../index.html">SaveScreen Kids</a></h4>
+            <p>Promovendo uma qualidade de vida superior para seus filhos, com uma rotina saudável e equilibrada.</p>
+        </div>
+    </footer>
+    <script src="../../assets/js/utils/menu.js"></script>
+    <script src="../../assets/js/utils/logout.js"></script>
+    <script src="../../assets/js/utils/mensagem-aviso.js"></script>
+    <script src="../../assets/js/rotina/conexao/conexao-tarefas.js"></script>
+    <script src="./editar-rotina.js"></script>
+</body>
+
+</html>

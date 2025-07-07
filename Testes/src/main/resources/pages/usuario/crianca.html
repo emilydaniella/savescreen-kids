@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cadastrar Criança | SaveScreen Kids</title>
+    <link rel="stylesheet" href="../../assets/css/style.css" />
+    <link rel="stylesheet" href="../../assets/css/usuario/cadastrar-crianca.css" />
+    <link rel="icon" type="image/svg+xml" href="../../assets/images/logo.png" />
+    <style>
+        .btn-roxo {
+            background: #9b27b0;
+            color: #fff;
+            border: none;
+            transition: background 0.2s;
+        }
+        .btn-roxo:hover {
+            background: #9b27b0;
+            color: #fff;
+        }
+        ul#listaCriancas {
+            padding-left: 0;
+            margin-top: 10px;
+        }
+        ul#listaCriancas li {
+            background: #f5f5f5;
+            border-radius: 6px;
+            padding: 6px 12px;
+            margin-bottom: 6px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <a href="../../index.html">
+            <img src="../../assets/images/logo.png" alt="Logotipo da SaveScreen Kids" />
+        </a>
+        <nav>
+            <a href="../../index.html">Home</a>
+            <a href="../rotina/rotina.html">Rotina</a>
+            <a href="../usuario/editar-informacoes.html">Perfil</a>
+        </nav>
+    </header>
+    <main>
+        <h2>Cadastrar nova criança</h2>
+        <form id="formCrianca" class="mb-3 d-flex flex-wrap align-items-center gap-2">
+            <label for="nomeCrianca" class="form-label mb-0 me-2">Nome da criança:</label>
+            <input type="text" id="nomeCrianca" class="form-control mb-2" required style="max-width:200px;" />
+            <button type="submit" class="btn btn-roxo">Cadastrar</button>
+        </form>
+        <div id="msgCrianca"></div>
+        <hr>
+        <h4>Crianças cadastradas:</h4>
+        <ul id="listaCriancas"></ul>
+    </main>
+    <footer>
+        <div class="footer-col">
+            <h4><a href="../../index.html">SaveScreen Kids</a></h4>
+            <p>Promovendo uma qualidade de vida superior para seus filhos, com uma rotina saudável e equilibrada.</p>
+        </div>
+    </footer>
+    <script>
+        function atualizarListaCriancas() {
+            const lista = document.getElementById('listaCriancas');
+            lista.innerHTML = '';
+            let criancas = JSON.parse(localStorage.getItem('criancas')) || [];
+            criancas.forEach(c => {
+                const li = document.createElement('li');
+                li.innerHTML = `
+                    <span>${c.nome}</span>
+                    <button class="btn btn-sm btn-danger" onclick="removerCrianca('${c.id}')">
+                        <i class="fa fa-trash"></i>
+                    </button>
+                `;
+                lista.appendChild(li);
+            });
+        }
+
+        function removerCrianca(id) {
+            let criancas = JSON.parse(localStorage.getItem('criancas')) || [];
+            criancas = criancas.filter(c => c.id !== id);
+            localStorage.setItem('criancas', JSON.stringify(criancas));
+            document.getElementById('msgCrianca').innerText = 'Criança removida!';
+            atualizarListaCriancas();
+        }
+
+        document.getElementById('formCrianca').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const nome = document.getElementById('nomeCrianca').value.trim();
+            if (!nome) return;
+
+            let criancas = JSON.parse(localStorage.getItem('criancas')) || [];
+            const novaCrianca = { id: Date.now().toString(), nome: nome };
+            criancas.push(novaCrianca);
+            localStorage.setItem('criancas', JSON.stringify(criancas));
+
+            document.getElementById('msgCrianca').innerText = 'Criança cadastrada com sucesso!';
+            this.reset();
+            atualizarListaCriancas();
+        });
+
+        atualizarListaCriancas();
+    </script>
+</body>
+</html>

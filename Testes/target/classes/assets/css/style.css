@@ -1,0 +1,236 @@
+/* === Font === */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+/* === Estilos Genericos === */
+* {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    outline: none;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    width: 100%;
+    overflow-x: hidden;
+    background-color: var(--bg-color);
+}
+
+a {
+    text-decoration: none;
+    color: var(--black-color);
+}
+
+main {
+    min-height: 60vh;
+}
+
+a:link {
+    color: var(--black-color);
+}
+
+a:visited {
+    color: var(--black-color);
+}
+
+::selection {
+    background-color: var(--blue-color);
+    color: var(--black-color);
+}
+
+::-webkit-scrollbar {
+    width: 5px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f0f0f0;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: var(--green-color);
+    width: 10px;
+}
+
+/* === Variáveis de Cor === */
+:root {
+    --darkpink-color: #ec327d;
+    --lightpink-color: #ffbdbd;
+    --lightblue-color: #7fa9e1;
+    --darkpurple-color: #9b27b0;
+    --lightpurple-color: #d6bdff;
+    --lightgreen-color: #98cb6a;
+    --darkorange-color: #ff6d28;
+    --yellow-color: #edc55f;
+    --mediumpurple-color: #a971bf;
+    --bg-color: #fffcf4;
+    --white-color: #fafafa;
+    --black-color: #000;
+    --cinza-escuro: #333;
+}
+
+/* === Button === */
+.button {
+    background-color: var(--darkpink-color);
+    border-radius: 10px;
+    padding: 0.7em 1.5em;
+    color: var(--black-color);
+    transition: ease all 0.5s;
+}
+
+.button:hover {
+    background-color: var(--white-color);
+    color: var(--orange-color);
+}
+
+/* === Estilo para o Header === */
+header {
+    position: sticky;
+    top: 0;
+    left: 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 12vh;
+    padding: 0 2rem;
+    background-color: var(--lightpink-color);
+    color: var(--black-color);
+    z-index: 1000;
+}
+
+header img {
+    width: 80px;
+}
+
+nav {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+}
+
+/* Estilos do link do menu */
+nav a {
+    margin: 0 1rem;
+    color: var(--black-color);
+    transition: ease all 0.5s;
+}
+
+nav a:hover {
+    border-bottom: 1px solid var(--black-color);
+}
+
+/* Botão de menu (hamburguer) */
+header .nav_btn {
+    display: none;
+    padding: 5px;
+    cursor: pointer;
+    background: transparent;
+    border: none;
+    color: var(--white-color);
+    font-size: 1.3rem;
+}
+
+/* Quando o menu estiver ativo, exibe o menu na versão mobile */
+nav.active {
+    display: flex;
+    flex-direction: column;  /* Empilha os links */
+    background-color: var(--pink-color);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;  /* A altura é 100% da altura da janela (100vh) */
+    justify-content: center;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+/* Media Query para telas pequenas (responsividade) */
+@media only screen and (max-width: 1024px) {
+    header .nav_btn {
+        display: block;  /* Exibe o botão de menu */
+    }
+
+    nav {
+        display: none;  /* O menu é escondido por padrão */
+        flex-direction: column;
+    }
+
+    nav.active {
+        display: flex;
+    }
+
+    nav a {
+        font-size: 1.2rem;
+        text-align: center;
+    }
+
+    .nav_close_btn {
+        position: absolute;
+        top: 2rem;
+        right: 2rem;
+        color: var(--black-color);
+    }
+}
+
+/* === Footer === */
+footer {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    padding: 40px;
+    background-color: var(--lightgreen-color);
+    color: var(--black-color);
+}
+
+.footer-col {
+    flex: 1;
+    min-width: 200px;
+    margin: 20px;
+}
+
+.footer-col h4 {
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+.footer-col p {
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+.footer-col ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+.footer-col ul li {
+    margin-bottom: 8px;
+}
+
+.footer-col ul li a {
+    color: var(--black-color);
+    font-size: 14px;
+    transition: 0.3s;
+}
+
+.footer-col ul li a:hover {
+    text-decoration: underline;
+}
+
+.footer-col .links a {
+    display: inline-block;
+    margin-right: 10px;
+    font-size: 18px;
+    background-color: var(--lightblue-color);
+    padding: 8px;
+    border-radius: 50%;
+    color: #000;
+    transition: 0.3s ease;
+}
+
+.footer-col .links a:hover {
+    background-color: var(--lightpurple-color);
+}

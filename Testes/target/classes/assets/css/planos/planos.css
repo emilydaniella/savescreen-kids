@@ -1,0 +1,48 @@
+.card {
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    border-radius: 10px;
+}
+
+.card:hover {
+    transform: scale(1.05);
+    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.15);
+}
+
+.card img {
+    border-radius: 10px 10px 0 0;
+}
+
+.card-body {
+    padding: 1.5em;
+    text-align: center;
+}
+
+.card-title {
+    font-size: 1.5rem;
+    margin-bottom: 1em;
+}
+
+.card-text {
+    font-size: 1rem;
+    color: #666;
+    margin-bottom: 1.5em;
+    display: none; /* Inicialmente o texto extra está oculto */
+}
+
+.card:hover .card-text {
+    display: block; /* Exibe o texto extra quando o mouse passa por cima */
+}
+
+.card-price {
+    font-size: 2rem;
+    font-weight: bold;
+    margin-top: 1.5em;
+}
+
+.container my-5 {
+    color: #666;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}

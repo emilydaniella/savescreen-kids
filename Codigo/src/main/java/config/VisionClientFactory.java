@@ -1,0 +1,67 @@
+package config;
+
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
+import java.nio.charset.StandardCharsets;
+
+import com.google.auth.oauth2.ServiceAccountCredentials;
+import com.google.cloud.vision.v1.ImageAnnotatorClient;
+import com.google.cloud.vision.v1.ImageAnnotatorSettings;
+
+// CHAMA O SERVICO DE API POR CONTA DE SERVICO DA GOOGLE CLOUD USANDO .JSON
+public class VisionClientFactory {
+
+    // ativar conta de servico
+    private static final String SERVICE_ACCOUNT_JSON = "{\n" +
+        "  \"type\": \"service_account\",\n" +
+        "  \"project_id\": \"docker-tests-430520\",\n" +
+        "  \"private_key_id\": \"1e9e29e6eb9141595e16b77f6b03109594b20536\",\n" +
+        "  \"private_key\": \"-----BEGIN PRIVATE KEY-----\\n" +
+        "MIIEvAIBADANBgkqhkiG9w0BAQEFAASCBKYwggSiAgEAAoIBAQC898zUtcY2tAkm\\n" +
+        "ShDRRnAfVWzLiPGJB/dqSPISPwox89AoYfXo0abT+UsHLGHwzOtpBmIkuzkAYGfw\\n" +
+        "NlPLXa2VuddMbitwXJ12p1iHf2DJySIGzDa+10fHfb6lCv8t40gg/XhgC+XC11TW\\n" +
+        "0p1xfHO1R5uLyPHrvBZwzSg4+YskcBmlr9ED7QzxY6PReUTbVfERG94EKNp8KXlN\\n" +
+        "ruYW6Q52qKuMmcBQD/kGB4cBNEADPHRCvZAUlHHKj9MEWmX0qOJ6cw2J48DShfgU\\n" +
+        "XhlnQCuqvV8NmbMr/TdC3fUKDTaBZNOQePI36nigM5Z71hIBoKwXsBF3Z8fxkdUS\\n" +
+        "7TliqOCLAgMBAAECggEACbeMVtvKB4IWfluMpdZDabkQ0R6HnQ5F0LdTi1Cmi48I\\n" +
+        "AyuWY5R0Sa4mB4ZmuuUurcXgQhdGhRhv/9ArWufER1C5G3sGzM5WYoWUbdNE/NtU\\n" +
+        "3pidsA6N6Fo09XOtT4TCbr/Z8sZp2C0OdcV6xx0pLgcynmuE1SRk2wQRr2xVlVf/\\n" +
+        "tW7DR/MJKKsPDVVi17qaMn94iaFKgigI0viYW+5l1VqBYVTl9FQ8gFUonJb4XdK9\\n" +
+        "MeXxOyfES7VNjDpgY3PD4x3ks8/1kP+Iaidh8B+Lm5uXK+X/AYgf3xa0V2P/MFBk\\n" +
+        "IElQKHmqbgko9cskbcoBUXRcl5e/rrGNiudg0rQLYQKBgQDlsoYRhC1NjyxN0VBr\\n" +
+        "4sSCInyEcqZVmDWnCPurqLJT8Q9ZLd0ja5ar3Ent3HROSfGYdfwuQYVDtyX6hMWA\\n" +
+        "SrY5t9IPiJ2Dre+Psw/QTToO0fJQjUm/SWMPi2ILcFa16r5YOh41ZSt+pdX/Lw0E\\n" +
+        "3+Ud7Q7XVdhYXU+1ZC54re09owKBgQDSm0/62Vzo4fjDNSZAWYpzQSUe1xsyb2G+\\n" +
+        "Sg/Nwu67c8wpg3t9WZiwBoTbZ1OL3wnoXIuqXO9RDzCgBDihKDBkeizurroORrAg\\n" +
+        "2G7xee4g3IAYuCInReCyCB1N3cBVasZaeCAPL0i1BmYs4JqyNSWEe++eaFVNXI77\\n" +
+        "VkCsMH0v+QKBgCwFWsxgmI4Uslj3lIIYo7CNC3AWyOn+kcnBXvo3CnYr7NUahRcU\\n" +
+        "t3uYbFK5vVCDu1mMwxfaVr/zicPJTlCYAPRu1kND22wxGYhguNci9c2BTv9BFLEk\\n" +
+        "T2fbPp8SmIukwXYHLWLuULek8K5HRid5AWAK3p1GRoAo4e3RlVZrftwhAoGARJSY\\n" +
+        "xcnUTG2RURfUne3KfN+A0/sd+x10CcAaR1mr3dTGbdpH8zii1Oc6iiuqdAisNEM2\\n" +
+        "o8Jhl9bHccQOIMRyhbWXPh4drhpsrjVsYyveVEsZV3NWg81obvDfggSs5ePANaOa\\n" +
+        "ZPdzyKcNzJ1TIqbV0b999upopKl4UfXzV17u1RkCgYBl+VCuwFO0RNr6buk0SQu4\\n" +
+        "n2LG/RfwKapEqdnkD9m3RN3Zxijq41x+Y4VxIiiLj91kg33ZMMPI1KZagsbTQ5xY\\n" +
+        "wP8v782+H8FhppIk+AlgL1fWcrt3QvG1cUM9a5xoSk2cAoiAAwUVI2InwEXTwoWh\\n" +
+        "NUN34dXA/OwyRiLU4FRQkQ==\\n" +
+        "-----END PRIVATE KEY-----\\n" +
+        "\",\n" +
+        "  \"client_email\": \"savescreenkids@docker-tests-430520.iam.gserviceaccount.com\",\n" +
+        "  \"client_id\": \"118393613736804018076\",\n" +
+        "  \"auth_uri\": \"https://accounts.google.com/o/oauth2/auth\",\n" +
+        "  \"token_uri\": \"https://oauth2.googleapis.com/token\",\n" +
+        "  \"auth_provider_x509_cert_url\": \"https://www.googleapis.com/oauth2/v1/certs\",\n" +
+        "  \"client_x509_cert_url\": \"https://www.googleapis.com/robot/v1/metadata/x509/savescreenkids%40docker-tests-430520.iam.gserviceaccount.com\",\n" +
+        "  \"universe_domain\": \"googleapis.com\"\n" +
+        "}";
+
+    public static ImageAnnotatorClient createClientFromJson() throws IOException {
+        ByteArrayInputStream credentialsStream = new ByteArrayInputStream(SERVICE_ACCOUNT_JSON.getBytes(StandardCharsets.UTF_8));
+        ServiceAccountCredentials credentials = ServiceAccountCredentials.fromStream(credentialsStream);
+
+        ImageAnnotatorSettings settings = ImageAnnotatorSettings.newBuilder()
+                .setCredentialsProvider(() -> credentials)
+                .build();
+
+        return ImageAnnotatorClient.create(settings);
+    }
+}

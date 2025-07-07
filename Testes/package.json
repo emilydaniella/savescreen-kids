@@ -1,0 +1,12 @@
+{
+  "name": "codigo",
+  "version": "1.0.0",
+  "description": "Para rodar o projeto o grupo pensou em uma solução de Banco de Dados Local, a modo que não fosse necessário instalações de dependênciais ou linguagens nativas, optando por imagens em Docker.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}

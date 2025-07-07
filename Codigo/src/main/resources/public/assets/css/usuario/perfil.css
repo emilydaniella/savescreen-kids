@@ -1,0 +1,78 @@
+/* Centraliza o container no meio da tela */
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 80vh; /* altura da tela menos o header e footer */
+    padding: 20px;
+}
+
+/* Estiliza o bloco de perfil */
+.perfil {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #f4f4f4;
+    padding: 30px;
+    border-radius: 16px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    width: 300px;
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.foto-perfil {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 15px;
+}
+
+.info h2 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 5px;
+}
+
+.info p {
+    color: #555;
+    font-size: 1rem;
+}
+
+/* Lista de crianças */
+.criancas {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.criancas ul {
+    list-style-type: none;
+    padding: 0;
+    margin-top: 10px;
+}
+
+.criancas li {
+    background-color: #e0e0e0;
+    margin: 5px 0;
+    padding: 8px 12px;
+    border-radius: 10px;
+}
+
+/* Botão de deletar conta */
+.btn-delete {
+    margin-top: 30px;
+    background-color: #e74c3c;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 12px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.btn-delete:hover {
+    background-color: #c0392b;
+}

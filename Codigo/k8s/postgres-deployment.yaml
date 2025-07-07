@@ -1,0 +1,56 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    kompose.cmd: kompose convert
+    kompose.version: 1.31.2 (a92241f79)
+  creationTimestamp: null
+  labels:
+    io.kompose.service: postgres
+  name: postgres
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      io.kompose.service: postgres
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      annotations:
+        kompose.cmd: kompose convert
+        kompose.version: 1.31.2 (a92241f79)
+      creationTimestamp: null
+      labels:
+        io.kompose.network/codigo-default: "true"
+        io.kompose.service: postgres
+    spec:
+      containers:
+        - env:
+            - name: POSTGRES_DB
+              value: dbsavescreen
+            - name: POSTGRES_PASSWORD
+              value: kids4sure!
+            - name: POSTGRES_USER
+              value: save4kids
+          image: postgres:latest
+          name: dbsavescreen
+          ports:
+            - containerPort: 5432
+              hostPort: 5432
+              protocol: TCP
+          resources: {}
+          volumeMounts:
+            - mountPath: /var/lib/postgresql/data
+              name: postgres-data
+            - mountPath: /docker-entrypoint-initdb.d/savescreen.sql
+              name: postgres-claim1
+      restartPolicy: Always
+      volumes:
+        - name: postgres-data
+          persistentVolumeClaim:
+            claimName: postgres-data
+        - name: postgres-claim1
+          persistentVolumeClaim:
+            claimName: postgres-claim1
+status: {}

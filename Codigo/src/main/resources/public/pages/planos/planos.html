@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Planos Mensais | SaveScreen KIDS</title>
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+
+    <!-- === JS File === -->
+    <script src="../../assets/js/menu.js" defer></script>
+
+    <!-- === CSS Files === -->
+    <link rel="stylesheet" href="../../assets/css/style.css" />
+    <link rel="stylesheet" href="../../assets/css/planos/planos.css" />
+
+    <!-- === Favicon === -->
+    <link rel="icon" type="image/svg+xml" href="../../assets/images/logo.png" />
+
+    <!-- === Font Awesome === -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+        integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+
+<body>
+    <!-- Header -->
+    <header>
+        <a href="../../index.html">
+            <img src="../../assets/images/logo.png" alt="Logotipo da SaveScreen Kids" />
+        </a>
+        <nav>
+            <a href="../../index.html" onclick="showNavbar()">Home</a>
+            <a href="../sobre/sobre-nos.html" onclick="showNavbar()">Sobre</a>
+                  <a href="../postagens/postagens.html">Postagens</a>
+            <a href="../contato/contato.html" onclick="showNavbar()">Planos</a>
+            <a href="../usuario/cadastro.html" onclick="showNavbar()">Cadastro <i class="fa-solid fa-user ml"></i></a>
+            <a href="../usuario/login.html" onclick="showNavbar()">Login <i class="fa-solid fa-right-to-bracket ml"></i></a>
+            <button class="nav_btn nav_close_btn" onclick="showNavbar()">
+                <span class="fa fa-times"></span>
+            </button>
+        </nav>
+        <button class="nav_btn" onclick="showNavbar()">
+            <span class="fa fa-bars"></span>
+        </button>
+    </header>
+
+    <!-- Main Content -->
+<div class="container my-5">
+    <h1 class="text-center mb-4"><strong>O que o nosso software faz?</strong></h1>
+    <p class="text-center">
+        Nosso software oferece <strong>controle parental completo</strong> sobre o que seus filhos acessam na internet. 
+        Utilizando <strong>Inteligência Artificial</strong>, analisamos sites e rastreamos conteúdos impróprios, 
+        garantindo a <strong>segurança das crianças</strong>, mesmo em navegadores privados ou dispositivos diferentes. 
+        Além disso, notificamos os pais <strong>em tempo real</strong> sobre qualquer atividade suspeita, proporcionando 
+        <strong>tranquilidade e proteção</strong> para toda a família.
+    </p>
+</div>
+
+    <!-- Cards Section -->
+    <div class="row justify-content-center">
+        <!-- Card 1: Plano Básico -->
+        <div class="col-lg-3 col-md-6 mb-4">
+            <div class="card">
+                <img src="../../assets/images/planos/bronze.png" class="card-img-top" alt="Plano Básico">
+                <div class="card-body">
+                    <h5 class="card-title">Plano Básico</h5>
+                    <p class="card-text">Ideal para quem busca algo simples. Inclui controle para 1 criança e o envio de
+                        1 livro por mês.</p>
+                    <div class="card-price">R$ 29,99/mês</div>
+                    <a href="../../assets/software/beta.txt" download>
+                        <img src="../../assets/images/logo.png" alt="Baixar Arquivo" class="img-fluid mt-3"
+                            style="max-width: 80px;">
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Card 2: Plano Intermediário -->
+        <div class="col-lg-3 col-md-6 mb-4">
+            <div class="card">
+                <img src="../../assets/images/planos/prata.png" class="card-img-top" alt="Plano Intermediário">
+                <div class="card-body">
+                    <h5 class="card-title">Plano Intermediário</h5>
+                    <p class="card-text">Oferece controle para até 3 crianças e recursos de imagem limitados. Perfeito
+                        para famílias maiores.</p>
+                    <div class="card-price">R$ 59,99/mês</div>
+                    <a href="../../assets/software/beta.txt" download>
+                        <img src="../../assets/images/logo.png" alt="Baixar Arquivo" class="img-fluid mt-3"
+                            style="max-width: 80px;">
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Card 3: Plano Premium -->
+        <div class="col-lg-3 col-md-6 mb-4">
+            <div class="card">
+                <img src="../../assets/images/planos/dourado.png" class="card-img-top" alt="Plano Premium">
+                <div class="card-body">
+                    <h5 class="card-title">Plano Premium</h5>
+                    <p class="card-text">Controle para 3 a 5 crianças, recursos de imagem ilimitados e o envio de 1
+                        brinquedo ou livro por criança.</p>
+                    <div class="card-price">R$ 99,99/mês</div>
+                    <a href="../../assets/software/beta.txt" download>
+                        <img src="../../assets/images/logo.png" alt="Baixar Arquivo" class="img-fluid mt-3"
+                            style="max-width: 80px;">
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-col">
+            <h4><a href="../../index.html">SaveScreen Kids</a></h4>
+            <p>SaveScreen Kids, comprometidos com a segurança das crianças que usam internet, oferecemos soluções de
+                controle para a família.</p>
+        </div>
+        <div class="footer-col">
+            <h4>Conheça nossa plataforma</h4>
+            <ul>
+                <li><a href="sobre-nos.html">Sobre nós</a></li>
+                <li><a href="../postagens/postagens.html">Ver postagens</a></li>
+                <li><a href="../contato/contato.html">Entre em contato</a></li>
+            </ul>
+        </div>
+        <div class="footer-col">
+            <h4>Siga-nos</h4>
+            <div class="links">
+                <a href="https://web.facebook.com/pucminasoficial/" target="_blank"><i
+                        class="fab fa-facebook-f"></i></a>
+                <a href="https://www.linkedin.com/school/pucminas/" target="_blank"><i
+                        class="fab fa-linkedin-in"></i></a>
+                <a href="https://www.instagram.com/napucminas/" target="_blank"><i class="fab fa-instagram"></i></a>
+                <a href="https://twitter.com/pucminasoficial" target="_blank"><i class="fa-brands fa-x-twitter"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS & Popper.js -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"></script>
+</body>
+
+</html>

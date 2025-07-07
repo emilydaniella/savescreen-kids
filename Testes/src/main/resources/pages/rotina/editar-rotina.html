@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Editar rotina | SaveScreen Kids</title>
+    <link rel="stylesheet" href="../../assets/css/style.css" />
+    <link rel="stylesheet" href="../../assets/css/rotina/editar-rotina.css" />
+    <link rel="icon" type="image/svg+xml" href="../../assets/images/logo.png" />
+</head>
+<body onload="init()">
+    <!-- === Header === -->
+    <header>
+        <a href="../../index.html">
+            <img src="../../assets/images/logo.png" alt="Logotipo da SaveScreen Kids" />
+        </a>
+        <nav>
+            <a href="../../index.html">Home</a>
+            <a href="../rotina/rotina.html">Rotina</a>
+            <a href="../usuario/editar-informacoes.html">Perfil</a>
+        </nav>
+    </header>
+    <!-- === Page Content === -->
+    <main>
+        <h3 id="titulo">Editar rotina</h3>
+        <div class="mb-3 d-flex align-items-center">
+            <label for="select-crianca" class="me-2 fw-bold">Selecionar criança:</label>
+            <select id="select-crianca" class="form-select d-inline-block" style="width:auto;">
+                <!-- Opções preenchidas via JS -->
+            </select>
+        </div>
+        <div id="message" class="col-sm-10"></div>
+        <table id="tableTarefas">
+            <tr>
+                <th class="infoRotina">HORÁRIO</th>
+                <th class="dia">DOMINGO</th>
+                <th class="dia">SEGUNDA</th>
+                <th class="dia">TERÇA</th>
+                <th class="dia">QUARTA</th>
+                <th class="dia">QUINTA</th>
+                <th class="dia">SEXTA</th>
+                <th class="dia">SABÁDO</th>
+            </tr>
+        </table>
+        <hr>
+        <!-- Bloco de cadastro de criança -->
+        <section>
+            <h2>Cadastrar nova criança</h2>
+            <form id="formCrianca" class="mb-3">
+                <label for="nomeCrianca" class="form-label">Nome da criança:</label>
+                <input type="text" id="nomeCrianca" class="form-control mb-2" required />
+                <button type="submit" class="button">Cadastrar</button>
+            </form>
+            <div id="msgCrianca"></div>
+            <h4>Crianças cadastradas:</h4>
+            <ul id="listaCriancas"></ul>
+        </section>
+    </main>
+    <!-- === Footer === -->
+    <footer>
+        <div class="footer-col">
+            <h4><a href="../../index.html">SaveScreen Kids</a></h4>
+            <p>Promovendo uma qualidade de vida superior para seus filhos, com uma rotina saudável e equilibrada.</p>
+        </div>
+    </footer>
+    <script>
+        // Cadastro de criança
+        function atualizarListaCriancas() {
+            const lista = document.getElementById('listaCriancas');
+            lista.innerHTML = '';
+            let criancas = JSON.parse(localStorage.getItem('criancas')) || [];
+            criancas.forEach(c => {
+                const li = document.createElement('li');
+                li.textContent = c.nome;
+                lista.appendChild(li);
+            });
+        }
+
+        document.getElementById('formCrianca').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const nome = document.getElementById('nomeCrianca').value.trim();
+            if (!nome) return;
+
+            let criancas = JSON.parse(localStorage.getItem('criancas')) || [];
+            const novaCrianca = { id: Date.now().toString(), nome: nome };
+            criancas.push(novaCrianca);
+            localStorage.setItem('criancas', JSON.stringify(criancas));
+
+            document.getElementById('msgCrianca').innerText = 'Criança cadastrada com sucesso!';
+            this.reset();
+            atualizarListaCriancas();
+        });
+
+        atualizarListaCriancas();
+    </script>
+    <!-- Seus outros scripts de rotina -->
+    <script src="../../assets/js/utils/menu.js"></script>
+    <script src="../../assets/js/utils/logout.js"></script>
+    <script src="../../assets/js/utils/mensagem-aviso.js"></script>
+    <script src="../../assets/js/rotina/conexao/conexao-tarefas.js"></script>
+    <script src="../../assets/js/rotina/editar-rotina.js"></script>
+</body>
+</html>

@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Perfil do Responsável</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../assets/css/style.css" />
+    <link rel="stylesheet" href="../../assets/css/usuario/perfil.css" />
+    
+</head>
+<body>
+
+    <!-- === Header === -->
+        <header>
+            <a href="../../index.html">
+                <img
+                    src="../../assets/images/logo.png"
+                    alt="Logotipo da I&N KIDS"
+                />
+            </a>
+            <nav>
+                <a
+                    href="../postagens/criar-postagem.html"
+                    onclick="showNavbar()"
+                    >Criar postagem</a
+                >
+                <a
+                    href="../postagens/gerenciar-postagens.html"
+                    onclick="showNavbar()"
+                    >Gerenciar postagens</a
+                >
+                <a href="../rotina/rotina.html" onclick="showNavbar()"
+                    >Rotina</a
+                >
+                <a
+                    href="../usuario/editar-informacoes.html"
+                    onclick="showNavbar()"
+                    >Perfil <i class="fa-solid fa-user ml"></i
+                ></a>
+                <a id="logout" href="../../index.html" onclick="showNavbar()"
+                    >Sair <i class="fa-solid fa-right-from-bracket ml"></i
+                ></a>
+                <button class="nav_btn nav_close_btn" onclick="showNavbar()">
+                    <span class="fa fa-times"></span>
+                </button>
+            </nav>
+            <button class="nav_btn" onclick="showNavbar()">
+                <span class="fa fa-bars"></span>
+            </button>
+        </header>
+
+<div class="container">
+    <div class="perfil">
+        <img class="foto-perfil" src="https://randomuser.me/api/portraits/men/75.jpg" alt="Foto do Responsável" id="foto-responsavel">
+        <div class="info">
+            <h2 id="nome-responsavel">Nome do Responsável</h2>
+            <p id="email-responsavel">email@exemplo.com</p>
+        </div>
+    </div>
+
+    <div class="criancas">
+        <h3>Crianças cadastradas:</h3>
+        <ul id="lista-criancas">
+            <!-- Crianças serão adicionadas aqui dinamicamente -->
+        </ul>
+    </div>
+
+    <button class="btn-delete" onclick="deletarConta()">Deletar Conta</button>
+</div>
+
+<!-- === Footer === -->
+            <footer>
+                <div class="footer-col">
+                    <h4><a href="../../index.html">I&N KIDS</a></h4>
+                    <p>
+                        Promovendo uma qualidade de vida superior para seus
+                        filhos, com uma rotina saudável e equilibrada.
+                    </p>
+                </div>
+                <div class="footer-col">
+                    <h4>Conheça nossa plataforma</h4>
+                    <ul>
+                        <li><a href="../sobre/sobre-nos.html">Sobre nós</a></li>
+                        <li>
+                            <a href="../postagens/postagens.html"
+                                >Ver postagens</a
+                            >
+                        </li>
+                        <li>
+                            <a href="../contato/contato.html"
+                                >Entre em contato</a
+                            >
+                        </li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Siga-nos</h4>
+                    <div class="links">
+                        <a
+                            href="https://web.facebook.com/pucminasoficial/"
+                            target="_blank"
+                            ><i class="fab fa-facebook-f"></i
+                        ></a>
+                        <a
+                            href="https://www.linkedin.com/school/pucminas/"
+                            target="_blank"
+                            ><i class="fab fa-linkedin-in"></i
+                        ></a>
+                        <a
+                            href="https://www.instagram.com/napucminas/"
+                            target="_blank"
+                            ><i class="fab fa-instagram"></i
+                        ></a>
+                        <a
+                            href="https://twitter.com/pucminasoficial"
+                            target="_blank"
+                            ><i class="fa-brands fa-x-twitter"></i
+                        ></a>
+                    </div>
+                </div>
+            </footer>
+
+<script>
+    // Simulação de dados vindos do backend
+    const responsavel = {
+        nome: "Daniella Emily",
+        email: "daniella.emily@savescreen.com",
+        fotoId: Math.floor(Math.random() * 100),
+        criancas: [
+            { nome: "Lucas Silva" },
+            { nome: "Mariana Costa" },
+            {nome: "Claudia"}
+        ]
+    };
+
+    document.getElementById("nome-responsavel").textContent = responsavel.nome;
+    document.getElementById("email-responsavel").textContent = responsavel.email;
+    document.getElementById("foto-responsavel").src = `https://randomuser.me/api/portraits/women/${responsavel.fotoId}.jpg`;
+
+    const lista = document.getElementById("lista-criancas");
+    responsavel.criancas.forEach(crianca => {
+        const li = document.createElement("li");
+        li.textContent = crianca.nome;
+        lista.appendChild(li);
+    });
+
+    function deletarConta() {
+        if (confirm("Tem certeza que deseja deletar sua conta?")) {
+            alert("Conta deletada (simulação).");
+            window.location.href = "/login";
+        }
+    }
+</script>
+
+</body>
+</html>

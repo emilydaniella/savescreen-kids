@@ -1,0 +1,49 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    kompose.cmd: kompose convert
+    kompose.version: 1.31.2 (a92241f79)
+  creationTimestamp: null
+  labels:
+    io.kompose.service: app
+  name: app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      io.kompose.service: app
+  strategy: {}
+  template:
+    metadata:
+      annotations:
+        kompose.cmd: kompose convert
+        kompose.version: 1.31.2 (a92241f79)
+      creationTimestamp: null
+      labels:
+        io.kompose.network/codigo-default: "true"
+        io.kompose.service: app
+    spec:
+      containers:
+        - env:
+            - name: DB_HOST
+              value: dbsavescreen
+            - name: DB_NAME
+              value: dbsavescreen
+            - name: DB_PASSWORD
+              value: kids4sure!
+            - name: DB_PORT
+              value: "5432"
+            - name: DB_USER
+              value: save4kids
+            - name: SPARK_MASTER_URL
+              value: spark://spark-master:7077
+          image: app
+          name: java-app
+          ports:
+            - containerPort: 8081
+              hostPort: 8081
+              protocol: TCP
+          resources: {}
+      restartPolicy: Always
+status: {}

@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Rotina | SaveScreen Kids</title>
+        <!-- === Favicon === -->
+        <link rel="icon" type="image/svg+xml" href="../../assets/images/logo.png" />
+        <!-- === Font Awesome === -->
+        <link rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+            crossorigin="anonymous"
+            referrerpolicy="no-referrer"
+        />
+        <!-- === Bootstrap === -->
+        <link
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+            rel="stylesheet"
+            crossorigin="anonymous"
+        />
+        <!-- === CSS Files === -->
+        <link rel="stylesheet" href="../../assets/css/style.css" />
+        <link rel="stylesheet" href="../../assets/css/rotina/exibir-rotina.css" />
+        <style>
+            /* Botão roxo */
+            .btn-roxo {
+                background: #a259e6;
+                color: #fff;
+                border: none;
+                transition: background 0.2s;
+            }
+            .btn-roxo:hover {
+                background: #7c3bbf;
+                color: #fff;
+            }
+            /* Melhor alinhamento do bloco de crianças */
+            #bloco-criancas {
+                max-width: 350px;
+                margin-top: 24px;
+            }
+        </style>
+    </head>
+    <body>
+        <!-- === Header === -->
+        <header>
+            <a href="../../index.html">
+                <img src="../../assets/images/logo.png" alt="Logotipo da I&N KIDS" />
+            </a>
+            <nav>
+                <a href="../postagens/criar-postagem.html" onclick="showNavbar()">Criar postagem</a>
+                <a href="../postagens/gerenciar-postagens.html" onclick="showNavbar()">Gerenciar postagens</a>
+                <a href="../rotina/rotina.html" onclick="showNavbar()">Rotina</a>
+                <a href="../usuario/editar-informacoes.html" onclick="showNavbar()">Perfil <i class="fa-solid fa-user ml"></i></a>
+                <a id="logout" href="../../index.html" onclick="showNavbar()">Sair <i class="fa-solid fa-right-from-bracket ml"></i></a>
+                <button class="nav_btn nav_close_btn" onclick="showNavbar()">
+                    <span class="fa fa-times"></span>
+                </button>
+            </nav>
+            <button class="nav_btn" onclick="showNavbar()">
+                <span class="fa fa-bars"></span>
+            </button>
+        </header>
+        <!-- === Page Content === -->
+        <main>
+            <div id="site-topo">
+                <div class="titulo-site d-flex flex-column flex-md-row align-items-md-start justify-content-between flex-wrap">
+                    <div>
+                        <h2>Rotina</h2>
+                        <div class="mt-3 mb-2">
+                            <label for="select-crianca" class="me-2 fw-bold">Selecionar criança:</label>
+                            <select id="select-crianca" class="form-select d-inline-block" style="width:auto;">
+                                <!-- Opções de crianças serão preenchidas via JS -->
+                            </select>
+                        </div>
+                        <!-- Bloco de cadastro e exclusão de crianças -->
+                        <section id="bloco-criancas">
+                            <h5>Gerenciar crianças</h5>
+                            <form id="formCrianca" class="mb-2 d-flex flex-wrap align-items-center gap-2">
+                                <input type="text" id="nomeCrianca" class="form-control" placeholder="Nome da criança" required style="max-width:200px;" />
+                                <button type="submit" class="btn btn-roxo">Cadastrar</button>
+                            </form>
+                            <ul id="listaCriancas" class="list-unstyled d-flex flex-wrap gap-2"></ul>
+                            <div id="msgCrianca" class="mt-2"></div>
+                        </section>
+                    </div>
+                    <form class="searchform mt-3 mt-md-0" id="search-form">
+                        <input
+                            type="text"
+                            id="filtro-tarefa"
+                            placeholder="Digite o nome da tarefa"
+                        />
+                        <button type="submit" class="button" id="search-button">
+                            Procurar
+                        </button>
+                    </form>
+                </div>
+            </div>
+            <div id="message" class="col-sm-10"></div>
+            <table id="tableTarefas">
+                <tr>
+                    <th class="infoRotina">HORÁRIO</th>
+                    <th class="dia">DOMINGO</th>
+                    <th class="dia">SEGUNDA</th>
+                    <th class="dia">TERÇA</th>
+                    <th class="dia">QUARTA</th>
+                    <th class="dia">QUINTA</th>
+                    <th class="dia">SEXTA</th>
+                    <th class="dia">SÁBADO</th>
+                    <th class="editar">
+                        <a href="editar-rotina.html" class="link-editar">
+                            <button type="button" class="btn btn-editar">
+                                Editar
+                            </button>
+                        </a>
+                    </th>
+                </tr>
+                <!-- Linhas com as tarefas serão inseridas aqui pelo JavaScript -->
+            </table>
+        </main>
+        <!-- === Footer === -->
+        <footer>
+            <div class="footer-col">
+                <h4><a href="../../index.html">I&N KIDS</a></h4>
+                <p>
+                    Promovendo uma qualidade de vida superior para seus filhos,
+                    com uma rotina saudável e equilibrada.
+                </p>
+            </div>
+            <div class="footer-col">
+                <h4>Conheça nossa plataforma</h4>
+                <ul>
+                    <li><a href="../sobre/sobre-nos.html">Sobre nós</a></li>
+                    <li>
+                        <a href="../postagens/postagens.html">Ver postagens</a>
+                    </li>
+                    <li>
+                        <a href="../contato/contato.html">Entre em contato</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Siga-nos</h4>
+                <div class="links">
+                    <a href="https://web.facebook.com/pucminasoficial/" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://www.linkedin.com/school/pucminas/" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="https://www.instagram.com/napucminas/" target="_blank"><i class="fab fa-instagram"></i></a>
+                    <a href="https://twitter.com/pucminasoficial" target="_blank"><i class="fa-brands fa-x-twitter"></i></a>
+                </div>
+            </div>
+        </footer>
+
+        <!-- === Bootstrap === -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+        <!-- === jQuery === -->
+        <script src="../../assets/js/jquery/jquery-3.7.1.min.js"></script>
+        <!-- === SweetAlert === -->
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        <!-- === JS Files === -->
+        <script src="../../assets/js/utils/menu.js"></script>
+        <script src="../../assets/js/utils/logout.js"></script>
+        <script src="../../assets/js/utils/mensagem-aviso.js"></script>
+        <script src="../../assets/js/rotina/conexao/conexao-tarefas.js"></script>
+        <script src="../../assets/js/rotina/exibir-rotina.js"></script>
+        <script>
+            // Gerenciar crianças (criar e deletar)
+            function preencherSelectCriancas() {
+                const select = document.getElementById('select-crianca');
+                const criancas = JSON.parse(localStorage.getItem('criancas')) || [];
+                const criancaSelecionada = select.value;
+                select.innerHTML = '';
+                criancas.forEach(crianca => {
+                    const option = document.createElement('option');
+                    option.value = crianca.id;
+                    option.textContent = crianca.nome;
+                    select.appendChild(option);
+                });
+                // Mantém selecionado se possível
+                if (criancas.length > 0) {
+                    select.value = criancaSelecionada && criancas.some(c => c.id === criancaSelecionada)
+                        ? criancaSelecionada
+                        : criancas[0].id;
+                }
+                // Atualize a rotina exibida se necessário
+                if (typeof listTarefas === "function") listTarefas();
+            }
+
+            function atualizarListaCriancas() {
+                const lista = document.getElementById('listaCriancas');
+                lista.innerHTML = '';
+                let criancas = JSON.parse(localStorage.getItem('criancas')) || [];
+                criancas.forEach(c => {
+                    const li = document.createElement('li');
+                    li.className = "d-flex align-items-center gap-2";
+                    li.innerHTML = `
+                        <span>${c.nome}</span>
+                        <button class="btn btn-sm btn-danger" onclick="removerCrianca('${c.id}')">
+                            <i class="fa fa-trash"></i>
+                        </button>
+                    `;
+                    lista.appendChild(li);
+                });
+                preencherSelectCriancas();
+            }
+
+            function removerCrianca(id) {
+                let criancas = JSON.parse(localStorage.getItem('criancas')) || [];
+                criancas = criancas.filter(c => c.id !== id);
+                localStorage.setItem('criancas', JSON.stringify(criancas));
+                document.getElementById('msgCrianca').innerText = 'Criança removida!';
+                atualizarListaCriancas();
+            }
+
+            document.getElementById('formCrianca').addEventListener('submit', function(e) {
+                e.preventDefault();
+                const nome = document.getElementById('nomeCrianca').value.trim();
+                if (!nome) return;
+
+                let criancas = JSON.parse(localStorage.getItem('criancas')) || [];
+                const novaCrianca = { id: Date.now().toString(), nome: nome };
+                criancas.push(novaCrianca);
+                localStorage.setItem('criancas', JSON.stringify(criancas));
+
+                document.getElementById('msgCrianca').innerText = 'Criança cadastrada com sucesso!';
+                this.reset();
+                atualizarListaCriancas();
+            });
+
+            atualizarListaCriancas();
+        </script>
+    </body>
+</html>

@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    kompose.cmd: kompose convert
+    kompose.version: 1.31.2 (a92241f79)
+  creationTimestamp: null
+  labels:
+    io.kompose.service: spark-master
+  name: spark-master
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      io.kompose.service: spark-master
+  strategy: {}
+  template:
+    metadata:
+      annotations:
+        kompose.cmd: kompose convert
+        kompose.version: 1.31.2 (a92241f79)
+      creationTimestamp: null
+      labels:
+        io.kompose.network/codigo-default: "true"
+        io.kompose.service: spark-master
+    spec:
+      containers:
+        - env:
+            - name: SPARK_MODE
+              value: master
+          image: bitnami/spark:latest
+          name: spark-master
+          ports:
+            - containerPort: 7077
+              hostPort: 7077
+              protocol: TCP
+            - containerPort: 8080
+              hostPort: 8080
+              protocol: TCP
+          resources: {}
+      restartPolicy: Always
+status: {}

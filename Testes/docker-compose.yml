@@ -1,0 +1,48 @@
+services:
+  postgres:
+    image: postgres:latest
+    container_name: dbsavescreen
+    environment:
+      POSTGRES_USER: save4kids
+      POSTGRES_PASSWORD: kids4sure!
+      POSTGRES_DB: dbsavescreen
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+
+  spark-master:
+    image: bitnami/spark:latest
+    container_name: spark-master
+    environment:
+      - SPARK_MODE=master
+    ports:
+      - "7077:7077"
+      - "8080:8080"
+
+  spark-worker:
+    image: bitnami/spark:latest
+    container_name: spark-worker
+    environment:
+      - SPARK_MODE=worker
+      - SPARK_MASTER_URL=spark://spark-master:7077
+    depends_on:
+      - spark-master
+
+  app:
+    build: .
+    container_name: java-app
+    depends_on:
+      - postgres
+      - spark-master
+    ports:
+      - "8081:8081"
+    environment:
+      - DB_HOST=dbsavescreen.postgres.database.azure.com
+      - DB_PORT=5432
+      - DB_NAME=dbsavescreen
+      - DB_USER=save4kids
+      - DB_PASSWORD=kids4sure!
+
+volumes:
+  postgres-data:

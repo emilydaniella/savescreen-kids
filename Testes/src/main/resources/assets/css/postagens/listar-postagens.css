@@ -1,0 +1,191 @@
+:root {
+    --darkpink-color: #ec327d;
+    --lightpink-color: #ffbdbd;
+    --lightblue-color: #7fa9e1;
+    --darkpurple-color: #9b27b0;
+    --lightpurple-color: #d6bdff;
+    --lightgreen-color: #98cb6a;
+    --darkorange-color: #ff6d28;
+    --yellow-color: #edc55f;
+    --mediumpurple-color: #a971bf;
+    --bg-color: #fffcf4;
+    --white-color: #fafafa;
+    --black-color: #000;
+    --cinza-escuro: #333;
+}
+
+/* === Layout do Topo e Formulário === */
+#site-topo {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 4em 2em 2em 2em;
+}
+
+#search-form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+#site-topo input,
+#search-form input {
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    min-width: 250px;
+    background-color: #fff;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
+}
+
+#search-button {
+    background-color: var(--darkpurple-color);
+    color: white;
+    padding: 10px 18px;
+    font-weight: 600;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.3s ease;
+    border: none;
+}
+
+#search-button:hover {
+    background-color: #d85b1d;
+}
+
+main h5 {
+    margin-top: 2vh;
+    color: var(--orange-color);
+    text-align: center;
+}
+
+/* === Layout de Cards === */
+#postagens {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    padding: 30px 20px;
+}
+
+.card {
+    width: 270px;
+    background-color: #fff;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+    transition: transform 0.3s ease-in-out;
+    cursor: pointer;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+}
+
+.card img {
+    width: 100%;
+    height: 170px;
+    object-fit: cover;
+    border-bottom: 1px solid #eee;
+}
+
+.card .card-body {
+    padding: 10px 15px;
+}
+
+.card .card-title {
+    font-size: 1.1rem;
+    margin-bottom: 5px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    color: var(--cinza-escuro);
+}
+
+.card .autor {
+    font-size: 0.9rem;
+    font-weight: normal;
+    color: #777;
+    text-align: left;
+    margin: 0;
+}
+
+/* === Responsividade === */
+@media screen and (max-width: 1203px) {
+    #site-topo input {
+        width: 25vw;
+    }
+}
+
+@media screen and (max-width: 931px) {
+    #site-topo input {
+        width: 30vw;
+    }
+}
+
+@media screen and (max-width: 767px) {
+    #site-topo input {
+        width: 40vw;
+    }
+}
+
+@media screen and (max-width: 608px) {
+    #site-topo {
+        flex-direction: column;
+    }
+
+    #site-topo input {
+        margin-right: 0;
+        font-size: 14px;
+        text-align: center;
+    }
+
+    .titulo-site h2 {
+        font-size: 30px;
+    }
+
+    #search-form {
+        width: 100vw;
+        margin: 2vh 0 4vh 0;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    #search-form button {
+        width: 20vw;
+        margin-top: 2vh;
+        font-size: 14px;
+    }
+}
+
+@media screen and (max-width: 547px) {
+    #search-form input {
+        width: 50vw;
+    }
+
+    #search-form button {
+        width: 25vw;
+    }
+}
+
+@media screen and (max-width: 451px) {
+    #search-form input {
+        width: 60vw;
+    }
+
+    #search-form button {
+        width: 30vw;
+    }
+}
+
+@media screen and (max-width: 378px) {
+    #search-form input {
+        width: 65vw;
+    }
+
+    #search-form button {
+        width: 35vw;
+    }
+}
